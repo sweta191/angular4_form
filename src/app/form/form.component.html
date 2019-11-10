@@ -1,0 +1,55 @@
+<div class="container">
+        <h1>Registration Form</h1>
+        <form>
+          <div class="form-group">
+            <label for="f_name">Name</label>
+            <input ngModel name="f_name" #f_name="ngModel"  type="text" class="form-control" id="f_name" required>
+            <div class="alert alert-danger" *ngIf="f_name.touched && !f_name.valid" >first name is required</div>
+          </div>
+          <div class="form-group">
+                <label for="mail">Email-id</label>
+                <input ngModel name="email" #email="ngModel"  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  type="text" class="form-control" id="mail" required>
+                <div class="alert alert-danger" *ngIf="email.touched && !email.valid" >
+                    <div *ngIf="email.errors.required">Email is required</div>
+                    <div *ngIf="email.errors.pattern">please enter valid email address</div>
+                </div>
+           </div>
+           <div class="form-group">
+                <label for="number">Phone-no</label>
+                <input ngModel name="number" #number="ngModel"  pattern="^[7-9][0-9]{9}$" type="text" class="form-control" id="number" required>
+                <div class="alert alert-danger" *ngIf="number.touched && !number.valid" >
+                        <div *ngIf="number.errors.required">number is required</div>
+                        <div *ngIf="number.errors.pattern">please enter valid number</div>
+                </div>
+           </div>
+           
+    
+          <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea type="text" class="form-control" id="comment" col="10" row="20"></textarea>
+          </div>
+    
+          <button type="submit" class="btn btn-success" (click)="add({name:f_name.value,mail:email.value,number:number.value})">Submit</button>
+          
+        </form>
+    </div>
+      
+      <div class="panel-body">
+            <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>name</th>
+                        <th>mail</th>
+                        <th>Phone</th>
+                    </tr>
+                    <tr *ngFor="let data of myItems;let i= index">
+                        <td>{{i + 1}}</td>
+                        <td>{{data.Value.name}}</td>
+                        <td>{{data.Value.mail}}</td>
+                        <td>{{data.Value.number}}</td>
+                        <span class="glyphicon glyphicon-pencil" (click)=edit(data)></span>   
+                    </tr>
+                </table>
+
+      </div>
+      
