@@ -3,6 +3,7 @@
   <form>
     <div class="form-group">
       <div></div>
+      <div></div>
       <label for="f_name">Name</label>
       <input ngModel name="f_name" #f_name="ngModel" type="text" class="form-control" id="f_name" required>
       <div class="alert alert-danger" *ngIf="f_name.touched && !f_name.valid">first name is required</div>
